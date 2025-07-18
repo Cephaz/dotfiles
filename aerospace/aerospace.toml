@@ -144,3 +144,7 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'org.mozilla.nightly'
     run = ['move-node-to-workspace 2 --focus-follows-window']
 
+    [[on-window-detected]]
+    if.app-id = 'org.mozilla.firefox'
+    run = ['move-node-to-workspace 3 --focus-follows-window']
+
