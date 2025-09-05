@@ -1,13 +1,13 @@
 local opt = vim.opt
 
 -- Leader keys
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Interface
 opt.number = true
 opt.relativenumber = true
-opt.signcolumn = "yes"
+opt.signcolumn = 'yes'
 opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
@@ -35,16 +35,16 @@ opt.timeoutlen = 300
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 
 -- Colors
 opt.termguicolors = true
 
 -- Completion
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = 'menu,menuone,noselect'
 
 -- Mouse
-opt.mouse = "a"
+opt.mouse = 'a'
 
 -- Clipboard
-opt.clipboard = "unnamedplus"
+opt.clipboard = 'unnamedplus'
