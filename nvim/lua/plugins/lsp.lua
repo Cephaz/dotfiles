@@ -24,6 +24,7 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'lua_ls', -- Serveur LSP pour Lua
+          'pyright', -- Serveur LSP pour Python (équivalent de Pylance)
         },
         automatic_installation = true,
       })
@@ -41,49 +42,29 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
 
-      -- Configuration pour le serveur Lua
-      lspconfig.lua_ls.setup({
+      -- Configuration pour Lua (simplifiée car on a .luarc.json)
+      lspconfig.lua_ls.setup({})
+
+      -- Configuration pour Python
+      lspconfig.pyright.setup({
         settings = {
-          Lua = {
-            -- Version de Lua
-            runtime = {
-              version = 'LuaJIT',
-            },
-            -- Reconnaître les variables globales Neovim
-            diagnostics = {
-              globals = {
-                'vim',
-                'describe',
-                'it',
-                'before_each',
-                'after_each',
-              },
-              disable = { 'missing-fields' },
-            },
-            -- Workspace pour Neovim
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-                '${3rd}/luv/library',
-                unpack(vim.api.nvim_get_runtime_file('', true)),
-              },
-              checkThirdParty = false,
-              maxPreload = 100000,
-              preloadFileSize = 10000,
-            },
-            -- Pas de télémétrie
-            telemetry = {
-              enable = false,
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
-            hint = {
-              enable = true,
+          pyright = {
+            -- Laisser ruff gérer les imports et le formatage
+            disableOrganizeImports = false,
+          },
+          python = {
+            analysis = {
+              -- Laisser ruff gérer le linting
+              ignore = { '*' },
+              typeCheckingMode = 'basic',
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              autoImportCompletions = true,
             },
           },
         },
       })
+
       -- Keymaps LSP (quand un serveur LSP est actif)
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -101,9 +82,15 @@ return {
           vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 
           -- Diagnostics
-          vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, opts)
-          vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-          vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+          vim.keymap.set('n', '<leader>cd', function()
+            vim.diagnostic.open_float()
+          end, opts)
+          vim.keymap.set('n', ']d', function()
+            vim.diagnostic.goto_next()
+          end, opts)
+          vim.keymap.set('n', '[d', function()
+            vim.diagnostic.goto_prev()
+          end, opts)
         end,
       })
     end,

@@ -108,12 +108,36 @@ return {
       end,
       desc = 'File Explorer',
     },
+    -- Terminal comme LazyVim
     {
-      '<leader>t',
+      '<c-_>', -- La vraie séquence que reçoit Neovim pour Ctrl+/
       function()
-        require('snacks').terminal()
+        require('snacks').terminal(nil, { cwd = vim.uv.cwd() })
       end,
-      desc = 'Terminal',
+      desc = 'Terminal (Root Dir)',
+      mode = 'n',
+    },
+    {
+      '<c-_>',
+      '<cmd>close<cr>',
+      desc = 'Hide Terminal',
+      mode = 't',
+    },
+
+    -- Optionnel : ajouter aussi <c-/> au cas où
+    {
+      '<c-/>',
+      function()
+        require('snacks').terminal(nil, { cwd = vim.uv.cwd() })
+      end,
+      desc = 'Terminal (Root Dir)',
+      mode = 'n',
+    },
+    {
+      '<c-/>',
+      '<cmd>close<cr>',
+      desc = 'Hide Terminal',
+      mode = 't',
     },
   },
 }

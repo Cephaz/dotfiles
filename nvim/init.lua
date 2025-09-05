@@ -6,10 +6,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Configuration de base
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
-
 -- Charger nos options
 require('config.options')
 require('config.keymaps')

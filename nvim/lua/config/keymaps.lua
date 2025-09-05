@@ -42,3 +42,8 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 map('n', '<leader>cl', vim.diagnostic.setloclist, { desc = 'Open diagnostic list' })
+
+-- Raccourci pour create PR
+vim.keymap.set('n', '<leader>gp', function()
+  vim.cmd('!gh pr create --fill --web')
+end, { desc = 'GitHub: Create PR', silent = true })
