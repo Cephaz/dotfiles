@@ -11,6 +11,7 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Aller à la fenêtre de droite' })
 
 -- Gestion des buffers
 map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Fermer le buffer' })
+map('n', '<leader>bb', '<C-^>', { desc = 'Alterner avec le buffer précédent' })
 map('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer suivant' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer précédent' })
 
@@ -29,7 +30,8 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Effacer surlignage recherche'
 map('n', '<c-s>', '<cmd>w<cr>', { desc = 'Sauvegarder' })
 
 -- Quitter
-map('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quitter' })
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quitter Neovim entier' })
+map('n', '<leader>qs', '<cmd>q<cr>', { desc = 'Quitter' })
 
 -- Navigation rapide
 map('n', 'J', 'mzJ`z', { desc = 'Joindre lignes' })
