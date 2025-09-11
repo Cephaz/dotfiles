@@ -24,8 +24,9 @@ return {
         ensure_installed = {
           'lua_ls', -- Serveur LSP pour Lua
           'pyright', -- Serveur LSP pour Python (équivalent de Pylance)
+          'vtsls',
           'vue_ls', -- Serveur LSP pour Vue.js
-          'ts_ls', -- TypeScript/JavaScript (requis pour vue_ls)
+          -- 'ts_ls', -- TypeScript/JavaScript (requis pour vue_ls)
         },
         automatic_installation = true,
       })
@@ -63,28 +64,111 @@ return {
         },
       })
 
-      -- Configuration pour TypeScript/JavaScript (DOIT être configuré AVANT vue_ls)
-      lspconfig.ts_ls.setup({
-        filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue' },
-        init_options = {
-          plugins = {
-            {
-              name = '@vue/typescript-plugin',
-              location = vim.fn.stdpath('data')
-                .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
-              languages = { 'vue' },
-              -- éventuellement ces champs si ton plugin l’exige
-              configNamespace = 'typescript',
-              enableForWorkspaceTypeScriptVersions = true,
+      -- Configuration pour TypeScript/JavaScript
+      local vue_language_server_path = vim.fn.stdpath('data')
+        .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+
+      local tsserver_filetypes =
+        { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+
+      -- Plugin Vue selon la doc officielle
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
+
+      -- Configuration vtsls selon la doc officielle Vue
+      local vtsls_config = {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                vue_plugin,
+              },
             },
           },
         },
-      })
+        filetypes = tsserver_filetypes,
+        -- 🎯 SOLUTION OFFICIELLE pour les semantic tokens (doc Vue v3.0.5+)
+        on_attach = function(client, bufnr)
+          -- Configuration officielle : désactiver semantic tokens pour Vue
+          if vim.bo[bufnr].filetype == 'vue' then
+            if client.server_capabilities.semanticTokensProvider then
+              client.server_capabilities.semanticTokensProvider.full = false
+            end
+          else
+            if client.server_capabilities.semanticTokensProvider then
+              client.server_capabilities.semanticTokensProvider.full = true
+            end
+          end
+        end,
+      }
 
-      -- Configuration pour Vue.js (dépend de ts_ls)
-      lspconfig.vue_ls.setup({
-        filetypes = { 'vue' },
-      })
+      -- Configuration Vue Language Server (doc officielle récente)
+      local vue_ls_config = {}
+
+      -- 🎯 Setup selon la documentation officielle nvim-lspconfig récent
+      lspconfig.vtsls.setup(vtsls_config)
+      lspconfig.vue_ls.setup(vue_ls_config)
+
+      -- VTSLS
+      -- local vue_plugin = {
+      --   name = '@vue/typescript-plugin',
+      --   location = vue_language_server_path,
+      --   languages = { 'vue' },
+      --   configNamespace = 'typescript',
+      --   enableForWorkspaceTypeScriptVersions = true,
+      -- }
+      --
+      -- -- Configuration vtsls (OBLIGATOIRE pour Vue v3)
+      -- lspconfig.vtsls.setup({
+      --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      --   settings = {
+      --     vtsls = {
+      --       tsserver = {
+      --         globalPlugins = {
+      --           vue_plugin,
+      --         },
+      --       },
+      --       autoUseWorkspaceTsdk = true,
+      --     },
+      --   },
+      --   on_attach = function(client, bufnr)
+      --     -- Désactiver semantic tokens de vtsls pour les fichiers Vue
+      --     if vim.bo[bufnr].filetype == 'vue' then
+      --       client.server_capabilities.semanticTokensProvider = nil
+      --     end
+      --   end,
+      -- })
+
+      -- TS_LS
+      -- lspconfig.ts_ls.setup({
+      --   init_options = {
+      --     plugins = {
+      --       {
+      --         name = '@vue/typescript-plugin',
+      --         location = vue_language_server_path,
+      --         languages = { 'vue' },
+      --       },
+      --     },
+      --   },
+      --   filetypes = {
+      --     'typescript', -- TypeScript files (.ts)
+      --     'javascript', -- JavaScript files (.js)
+      --     'javascriptreact', -- React files with JavaScript (.jsx)
+      --     'typescriptreact', -- React files with TypeScript (.tsx)
+      --     'vue', -- Vue.js single-file components (.vue)
+      --   },
+      --   on_attach = function(client, bufnr)
+      --     -- Désactiver les semantic tokens de ts_ls dans les fichiers .vue
+      --     -- pour laisser vue_ls gérer la coloration
+      --     if vim.bo[bufnr].filetype == 'vue' then
+      --       client.server_capabilities.semanticTokensProvider = nil
+      --     end
+      --   end,
+      -- })
 
       -- Keymaps LSP (quand un serveur LSP est actif)
       vim.api.nvim_create_autocmd('LspAttach', {
