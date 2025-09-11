@@ -28,6 +28,7 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Effacer surlignage recherche'
 
 -- Sauvegarde
 map('n', '<c-s>', '<cmd>w<cr>', { desc = 'Sauvegarder' })
+map('i', '<c-s>', '<esc><cmd>w<cr>a', { desc = 'Sauvegarder en mode insert' })
 
 -- Quitter
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quitter Neovim entier' })
