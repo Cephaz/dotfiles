@@ -36,21 +36,21 @@ return {
   keys = {
     -- Core navigation
     {
-      '<leader><space>',
+      '<leader>ff',
       function()
         require('snacks').picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
-      '<leader>,',
+      '<leader>fb',
       function()
         require('snacks').picker.buffers()
       end,
       desc = 'Buffers',
     },
     {
-      '<leader>/',
+      '<leader>fg',
       function()
         require('snacks').picker.grep()
       end,

@@ -4,16 +4,6 @@ return {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>f',
-        function()
-          require('conform').format({ async = true, lsp_fallback = true })
-        end,
-        mode = { 'n', 'v' },
-        desc = 'Format buffer',
-      },
-    },
     opts = {
       -- Définir les formatters par type de fichier
       formatters_by_ft = {
@@ -106,7 +96,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         'stylua', -- Lua formatter (pas dans Poetry)
         'luacheck', -- Lua linter (pas dans Poetry)
-        -- black, isort, flake8 sont gérés par Poetry
       })
     end,
   },

@@ -1,6 +1,9 @@
 local map = vim.keymap.set
 
 -- Meilleure navigation fenêtres
+map('n', '<leader>ws', '<C-w>s', { desc = 'split horizontal' }) -- split horizontal
+map('n', '<leader>wv', '<C-w>v', { desc = 'split vertical' }) -- split vertical
+map('n', '<leader>wq', '<C-w>q', { desc = 'close window' }) -- fermer la fenetre
 map('n', '<C-h>', '<C-w>h', { desc = 'Aller à la fenêtre de gauche' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Aller à la fenêtre du bas' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Aller à la fenêtre du haut' })
@@ -23,7 +26,7 @@ map('v', '>', '>gv', { desc = 'Indenter à droite' })
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Effacer surlignage recherche' })
 
 -- Sauvegarde
-map('n', '<leader>w', '<cmd>w<cr>', { desc = 'Sauvegarder' })
+map('n', '<c-s>', '<cmd>w<cr>', { desc = 'Sauvegarder' })
 
 -- Quitter
 map('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quitter' })
