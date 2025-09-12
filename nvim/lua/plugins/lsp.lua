@@ -44,7 +44,19 @@ return {
       local lspconfig = require('lspconfig')
 
       -- Configuration pour Lua (simplifiée car on a .luarc.json)
-      lspconfig.lua_ls.setup({})
+      lspconfig.lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }, -- déclare "vim" comme global
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true),
+              checkThirdParty = false,
+            },
+          },
+        },
+      })
 
       -- Configuration pour Python
       lspconfig.pyright.setup({
@@ -107,11 +119,11 @@ return {
       }
 
       -- Configuration Vue Language Server (doc officielle récente)
-      local vue_ls_config = {}
+      -- local vue_ls_config = {}
 
       -- 🎯 Setup selon la documentation officielle nvim-lspconfig récent
       lspconfig.vtsls.setup(vtsls_config)
-      lspconfig.vue_ls.setup(vue_ls_config)
+      -- lspconfig.vue_ls.setup(vue_ls_config)
 
       -- Keymaps LSP (quand un serveur LSP est actif)
       vim.api.nvim_create_autocmd('LspAttach', {
