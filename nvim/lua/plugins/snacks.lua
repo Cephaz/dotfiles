@@ -8,7 +8,7 @@ return {
     bigfile = { enabled = true, size = 1.5 * 1024 * 1024 },
     quickfile = { enabled = true },
 
-    -- Unified fuzzy finding and navigation
+    -- HACK: read picker docs @ https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
     picker = {
       enabled = true,
       ui_select = true,

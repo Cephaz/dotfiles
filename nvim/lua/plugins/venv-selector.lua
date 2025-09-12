@@ -1,16 +1,13 @@
 return {
   {
     'linux-cultist/venv-selector.nvim',
-    branch = 'regexp',
     dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-telescope/telescope.nvim',
     },
+    branch = 'regexp',
     config = function()
       require('venv-selector').setup({
-        -- Configuration du cache pour mémoriser les venv par projet
-        -- cache_dir = vim.fn.stdpath('cache') .. '/venv-selector',
-        -- cache_enabled = true,
 
         search = {
           -- Poetry virtualenvs

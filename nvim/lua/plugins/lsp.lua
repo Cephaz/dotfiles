@@ -113,72 +113,12 @@ return {
       lspconfig.vtsls.setup(vtsls_config)
       lspconfig.vue_ls.setup(vue_ls_config)
 
-      -- VTSLS
-      -- local vue_plugin = {
-      --   name = '@vue/typescript-plugin',
-      --   location = vue_language_server_path,
-      --   languages = { 'vue' },
-      --   configNamespace = 'typescript',
-      --   enableForWorkspaceTypeScriptVersions = true,
-      -- }
-      --
-      -- -- Configuration vtsls (OBLIGATOIRE pour Vue v3)
-      -- lspconfig.vtsls.setup({
-      --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-      --   settings = {
-      --     vtsls = {
-      --       tsserver = {
-      --         globalPlugins = {
-      --           vue_plugin,
-      --         },
-      --       },
-      --       autoUseWorkspaceTsdk = true,
-      --     },
-      --   },
-      --   on_attach = function(client, bufnr)
-      --     -- Désactiver semantic tokens de vtsls pour les fichiers Vue
-      --     if vim.bo[bufnr].filetype == 'vue' then
-      --       client.server_capabilities.semanticTokensProvider = nil
-      --     end
-      --   end,
-      -- })
-
-      -- TS_LS
-      -- lspconfig.ts_ls.setup({
-      --   init_options = {
-      --     plugins = {
-      --       {
-      --         name = '@vue/typescript-plugin',
-      --         location = vue_language_server_path,
-      --         languages = { 'vue' },
-      --       },
-      --     },
-      --   },
-      --   filetypes = {
-      --     'typescript', -- TypeScript files (.ts)
-      --     'javascript', -- JavaScript files (.js)
-      --     'javascriptreact', -- React files with JavaScript (.jsx)
-      --     'typescriptreact', -- React files with TypeScript (.tsx)
-      --     'vue', -- Vue.js single-file components (.vue)
-      --   },
-      --   on_attach = function(client, bufnr)
-      --     -- Désactiver les semantic tokens de ts_ls dans les fichiers .vue
-      --     -- pour laisser vue_ls gérer la coloration
-      --     if vim.bo[bufnr].filetype == 'vue' then
-      --       client.server_capabilities.semanticTokensProvider = nil
-      --     end
-      --   end,
-      -- })
-
       -- Keymaps LSP (quand un serveur LSP est actif)
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
           local opts = { buffer = ev.buf }
           -- Navigation LSP
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           -- Actions LSP
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
