@@ -22,15 +22,21 @@ return {
     config = function()
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'lua_ls', -- Serveur LSP pour Lua
-          'pyright', -- Serveur LSP pour Python (équivalent de Pylance)
+          'lua_ls',
+          'pyright',
           'vtsls',
-          'vue_ls', -- Serveur LSP pour Vue.js
-          -- 'ts_ls', -- TypeScript/JavaScript (requis pour vue_ls)
+          'vue_ls',
+          'jsonls',
         },
         automatic_installation = true,
       })
     end,
+  },
+  -- SchemaStore : schémas JSON pour validation
+  {
+    'b0o/SchemaStore.nvim',
+    lazy = true,
+    version = false, -- dernière version du main
   },
   -- LSP Config : configuration des serveurs
   {
@@ -103,9 +109,7 @@ return {
           },
         },
         filetypes = tsserver_filetypes,
-        -- 🎯 SOLUTION OFFICIELLE pour les semantic tokens (doc Vue v3.0.5+)
         on_attach = function(client, bufnr)
-          -- Configuration officielle : désactiver semantic tokens pour Vue
           if vim.bo[bufnr].filetype == 'vue' then
             if client.server_capabilities.semanticTokensProvider then
               client.server_capabilities.semanticTokensProvider.full = false
@@ -118,12 +122,17 @@ return {
         end,
       }
 
-      -- Configuration Vue Language Server (doc officielle récente)
-      -- local vue_ls_config = {}
-
-      -- 🎯 Setup selon la documentation officielle nvim-lspconfig récent
       lspconfig.vtsls.setup(vtsls_config)
-      -- lspconfig.vue_ls.setup(vue_ls_config)
+
+      -- Configuration pour JSON avec SchemaStore
+      lspconfig.jsonls.setup({
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      })
 
       -- Keymaps LSP (quand un serveur LSP est actif)
       vim.api.nvim_create_autocmd('LspAttach', {
