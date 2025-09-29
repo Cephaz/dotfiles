@@ -8,7 +8,7 @@ return {
       -- Définir les formatters par type de fichier
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'isort', 'black' }, -- Utiliser isort puis black
+        python = { 'isort', 'black' },
         javascript = { 'eslint_d', 'prettier' },
         typescript = { 'eslint_d', 'prettier' },
         javascriptreact = { 'eslint_d', 'prettier' },
@@ -17,7 +17,7 @@ return {
         css = { 'prettier' },
         scss = { 'prettier' },
         html = { 'prettier' },
-        json = { 'prettier' },
+        json = { 'jq' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
       },
@@ -64,6 +64,12 @@ return {
               return local_eslint
             end
             return 'eslint_d'
+          end,
+        },
+        jq = {
+          command = 'jq',
+          args = function()
+            return { '--indent', vim.bo.shiftwidth } -- Utilise l'indentation actuelle
           end,
         },
       },
@@ -140,6 +146,7 @@ return {
         'luacheck', -- Lua linter (pas dans Poetry/npm)
         'eslint_d', -- ESLint daemon pour JS/TS/Vue
         'prettier', -- Prettier pour le formatage
+        'jq',
       })
     end,
   },

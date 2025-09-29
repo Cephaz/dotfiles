@@ -47,25 +47,16 @@ return {
       'williamboman/mason-lspconfig.nvim',
     },
     config = function()
-      local lspconfig = require('lspconfig')
-
-      -- Configuration pour Lua (simplifiée car on a .luarc.json)
-      lspconfig.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         settings = {
           Lua = {
-            diagnostics = {
-              globals = { 'vim' }, -- déclare "vim" comme global
-            },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file('', true),
-              checkThirdParty = false,
-            },
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
           },
         },
       })
 
-      -- Configuration pour Python
-      lspconfig.pyright.setup({
+      vim.lsp.config('pyright', {
         settings = {
           pyright = {
             disableOrganizeImports = false,
@@ -86,8 +77,7 @@ return {
       local vue_language_server_path = vim.fn.stdpath('data')
         .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
-      local tsserver_filetypes =
-        { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+      local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
 
       -- Plugin Vue selon la doc officielle
       local vue_plugin = {
@@ -122,10 +112,10 @@ return {
         end,
       }
 
-      lspconfig.vtsls.setup(vtsls_config)
+      vim.lsp.config('vtsls', vtsls_config)
 
       -- Configuration pour JSON avec SchemaStore
-      lspconfig.jsonls.setup({
+      vim.lsp.config('jsonls', {
         settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
