@@ -1,0 +1,85 @@
+-- plugins/git-revert.lua
+-- Plugin pour revert les hunks Git (comme LazyVim)
+
+return {
+  'lewis6991/gitsigns.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
+  opts = {
+    signs = {
+      add = { text = '▎' },
+      change = { text = '▎' },
+      delete = { text = '' },
+      topdelete = { text = '' },
+      changedelete = { text = '▎' },
+      untracked = { text = '▎' },
+    },
+    on_attach = function(bufnr)
+      local gs = package.loaded.gitsigns
+
+      local function map(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
+
+      -- Navigation entre hunks
+      map('n', ']h', function()
+        if vim.wo.diff then
+          return ']c'
+        end
+        vim.schedule(function()
+          gs.next_hunk()
+        end)
+        return '<Ignore>'
+      end, { expr = true, desc = 'Next Hunk' })
+
+      map('n', '[h', function()
+        if vim.wo.diff then
+          return '[c'
+        end
+        vim.schedule(function()
+          gs.prev_hunk()
+        end)
+        return '<Ignore>'
+      end, { expr = true, desc = 'Prev Hunk' })
+
+      -- Revert hunk (bloc de changements sous le curseur)
+      map('n', '<leader>ghr', gs.reset_hunk, { desc = 'Reset Hunk' })
+      map('v', '<leader>ghr', function()
+        gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+      end, { desc = 'Reset Hunk' })
+
+      -- Revert buffer (fichier entier)
+      map('n', '<leader>ghR', gs.reset_buffer, { desc = 'Reset Buffer' })
+
+      -- Stage hunk
+      map('n', '<leader>ghs', gs.stage_hunk, { desc = 'Stage Hunk' })
+      map('v', '<leader>ghs', function()
+        gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+      end, { desc = 'Stage Hunk' })
+
+      -- Unstage hunk
+      map('n', '<leader>ghu', gs.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
+
+      -- Stage buffer
+      map('n', '<leader>ghS', gs.stage_buffer, { desc = 'Stage Buffer' })
+
+      -- Preview hunk
+      map('n', '<leader>ghp', gs.preview_hunk, { desc = 'Preview Hunk' })
+
+      -- Blame line
+      map('n', '<leader>ghb', function()
+        gs.blame_line({ full = true })
+      end, { desc = 'Blame Line' })
+
+      -- Diff contre index
+      map('n', '<leader>ghd', gs.diffthis, { desc = 'Diff This' })
+      map('n', '<leader>ghD', function()
+        gs.diffthis('~')
+      end, { desc = 'Diff This ~' })
+
+      -- Text object pour hunks
+      map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'GitSigns Select Hunk' })
+    end,
+  },
+}

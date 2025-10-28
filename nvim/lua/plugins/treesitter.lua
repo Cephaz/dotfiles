@@ -59,6 +59,12 @@ return {
           enable = true,
         },
       })
+
+      -- Configuration minimale du folding avec Treesitter
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.opt.foldlevelstart = 99 -- Tout ouvert par défaut
+      vim.opt.foldenable = true -- Active le folding
     end,
   },
 }

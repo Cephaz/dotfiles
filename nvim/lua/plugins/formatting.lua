@@ -17,6 +17,7 @@ return {
         css = { 'prettier' },
         scss = { 'prettier' },
         html = { 'prettier' },
+        terraform = { 'terraform_fmt' },
         json = { 'jq' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
@@ -72,6 +73,11 @@ return {
             return { '--indent', vim.bo.shiftwidth } -- Utilise l'indentation actuelle
           end,
         },
+        terraform_fmt = {
+          command = 'terraform',
+          args = { 'fmt', '-' },
+          stdin = true,
+        },
       },
     },
     init = function()
@@ -92,6 +98,8 @@ return {
         javascriptreact = { 'eslint_d' },
         typescriptreact = { 'eslint_d' },
         vue = { 'eslint_d' },
+        terraform = { 'tflint' },
+        tf = { 'tflint' },
       }
 
       -- Configuration flake8 pour utiliser l'environnement virtuel
@@ -147,6 +155,7 @@ return {
         'eslint_d', -- ESLint daemon pour JS/TS/Vue
         'prettier', -- Prettier pour le formatage
         'jq',
+        'tflint', -- Terraform linter
       })
     end,
   },
