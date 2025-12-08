@@ -48,3 +48,12 @@ opt.mouse = 'a'
 
 -- Clipboard
 opt.clipboard = 'unnamedplus'
+
+vim.o.autoread = true
+vim.opt.confirm = true
+
+-- -- Hack nécessaire : Neovim ne déclenche pas toujours autoread tout seul
+-- -- Ajoute ceci pour forcer la vérification quand tu reviens sur la fenêtre
+-- vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+--   command = "checktime",
+-- })

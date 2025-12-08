@@ -63,7 +63,6 @@ return {
           },
           python = {
             analysis = {
-              ignore = { '*' },
               typeCheckingMode = 'basic',
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
@@ -122,6 +121,22 @@ return {
             validate = { enable = true },
           },
         },
+      })
+
+      vim.api.nvim_create_autocmd('BufReadPost', {
+        pattern = '*.json',
+        callback = function()
+          local lspconfig = require('lspconfig')
+          lspconfig.jsonls.setup({
+            settings = {
+              json = {
+                schemas = require('schemastore').json.schemas(),
+                validate = { enable = true },
+              },
+            },
+          })
+          vim.cmd('LspRestart jsonls')
+        end,
       })
 
       -- Keymaps LSP (quand un serveur LSP est actif)

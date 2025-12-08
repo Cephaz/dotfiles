@@ -17,37 +17,31 @@ return {
   opts = {
     options = {
       -- Style des onglets
-      mode = 'buffers', -- set to "tabs" to only show tabpages instead
+      mode = 'buffers',
       themable = true,
-
-      -- Comportement de fermeture
-      close_command = 'bdelete! %d',
-      right_mouse_command = 'bdelete! %d',
+      -- Comportement de fermeture (garder la fenêtre ouverte)
+      close_command = 'bd %d',
+      right_mouse_command = 'bd %d',
       left_mouse_command = 'buffer %d',
       middle_mouse_command = nil,
-
       -- Indicateurs
       indicator = {
         icon = '▎',
         style = 'icon',
       },
-
       -- Icônes
       buffer_close_icon = '󰅖',
       modified_icon = '●',
       close_icon = '',
       left_trunc_marker = '',
       right_trunc_marker = '',
-
       -- Numérotation
-      numbers = 'none', -- "none" | "ordinal" | "buffer_id" | "both"
-
+      numbers = 'none',
       -- Largeur des noms
       max_name_length = 18,
       max_prefix_length = 15,
       truncate_names = true,
       tab_size = 18,
-
       -- Diagnostics LSP
       diagnostics = 'nvim_lsp',
       diagnostics_update_in_insert = false,
@@ -55,10 +49,8 @@ return {
         local icon = level:match('error') and ' ' or ' '
         return ' ' .. icon .. count
       end,
-
       -- Séparateurs
-      separator_style = 'thin', -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
-
+      separator_style = 'thin',
       -- Affichage conditionnel
       show_buffer_icons = true,
       show_buffer_close_icons = true,
@@ -66,10 +58,8 @@ return {
       show_tab_indicators = true,
       show_duplicate_prefix = true,
       persist_buffer_sort = true,
-
       -- Ordre de tri
       sort_by = 'insert_after_current',
-
       -- Buffers à ne pas afficher
       offsets = {
         {
@@ -85,8 +75,7 @@ return {
           separator = true,
         },
       },
-
-      -- Groupes personnalisés (optionnel)
+      -- Groupes personnalisés
       groups = {
         options = {
           toggle_hidden_on_enter = true,
@@ -111,7 +100,6 @@ return {
           },
         },
       },
-
       -- Hover pour voir le chemin complet
       hover = {
         enabled = true,
