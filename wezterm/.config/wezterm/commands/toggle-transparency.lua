@@ -1,6 +1,5 @@
 local wezterm = require("wezterm")
 
--- find command: ctrl + shift + p
 local command = {
 	brief = "Toggle terminal transparency",
 	icon = "md_circle_opacity",
