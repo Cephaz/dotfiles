@@ -32,3 +32,4 @@ vim.o.breakindent = true        -- Enable break indent (default: false)
 vim.o.backup = false            -- Creates a backup file (default: false)
 vim.o.writebackup = false       -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited (default: true)
 vim.o.undofile = true           -- Save undo history (default: false)
+vim.opt.showtabline = 0
