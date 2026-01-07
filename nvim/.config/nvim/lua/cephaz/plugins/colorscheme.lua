@@ -3,10 +3,10 @@ return {
   lazy = false,
   priority = 1000,
   opts = {
-    style = 'night', -- Essaye "storm" si tu veux plus de contraste
+    style = 'night',
     transparent = false,
     styles = {
-      sidebars = 'dark', -- Assombrit l'explorateur de fichiers pour le détacher
+      sidebars = 'dark',
       floats = 'dark',
     },
   },

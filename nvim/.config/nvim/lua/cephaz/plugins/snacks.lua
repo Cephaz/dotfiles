@@ -4,7 +4,6 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      -- === TES MODULES ACTUELS ===
       explorer = {
         enabled = true,
         replace_netrw = true,
@@ -17,34 +16,27 @@ return {
       },
       bufdelete = { enabled = true },
       winbar = { enabled = true },
-      indent = { enabled = true }, -- Lignes d'indentation
-      dashboard = { enabled = true }, -- Je simplifie la config ici pour la lisibilité
+      indent = { enabled = true },
+      dashboard = { enabled = true },
       notifier = { enabled = true },
       bigfile = { enabled = true },
       quickfile = { enabled = true },
 
-      -- === LES AJOUTS PERTINENTS ===
+      input = { enabled = true },
+      scroll = { enabled = true },
+      statuscolumn = { enabled = true },
 
-      -- 1. Interface Moderne
-      input = { enabled = true }, -- Jolie fenêtre pour les inputs (rename, create file)
-      scroll = { enabled = true }, -- Défilement fluide
-      statuscolumn = { enabled = true }, -- Colonne de gauche propre (Git + Numéros)
+      words = { enabled = true },
+      scope = { enabled = true },
 
-      -- 2. Outils de Code
-      words = { enabled = true }, -- Surligne les références du mot sous le curseur
-      scope = { enabled = true }, -- Surligne le bloc de code actif (fonction/boucle)
+      lazygit = { enabled = true },
+      terminal = { enabled = true },
+      gitbrowse = { enabled = true },
 
-      -- 3. Outils Système & Git
-      lazygit = { enabled = true }, -- Interface Git
-      terminal = { enabled = true }, -- Terminal flottant
-      gitbrowse = { enabled = true }, -- Ouvrir le fichier actuel sur GitHub/GitLab
-
-      -- 4. Recherche (Remplace Telescope)
       picker = { enabled = true },
     },
 
     keys = {
-      -- === EXPLORATEUR & DASHBOARD ===
       {
         '<leader>e',
         function()
@@ -60,7 +52,6 @@ return {
         desc = 'Dashboard',
       },
 
-      -- === BUFFERS ===
       {
         '<leader>bd',
         function()
@@ -76,7 +67,6 @@ return {
         desc = 'Fermer les autres buffers',
       },
 
-      -- === GIT (Nouveau) ===
       {
         '<leader>gg',
         function()
@@ -92,8 +82,6 @@ return {
         desc = 'Ouvrir sur GitHub',
       },
 
-      -- === TERMINAL (Nouveau) ===
-      -- C'est très pratique : Ctrl + / pour ouvrir un terminal
       {
         '<c-/>',
         function()
@@ -103,7 +91,6 @@ return {
         mode = { 'n', 't' },
       },
 
-      -- === PICKER (Recherche - Nouveau) ===
       {
         '<leader>ff',
         function()
@@ -124,15 +111,6 @@ return {
           Snacks.picker.buffers()
         end,
         desc = 'Liste des Buffers',
-      },
-
-      -- === UTILS ===
-      {
-        '<leader>z',
-        function()
-          Snacks.zen()
-        end,
-        desc = 'Mode Zen',
       },
     },
   },

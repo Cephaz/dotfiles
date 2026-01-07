@@ -2,11 +2,11 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- Pour les icônes
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        theme = 'auto', -- S'adapte automatiquement à Tokyonight/Catppuccin/Ayu
-        -- globalstatus = true, -- Une seule barre pour toutes les fenêtres (plus moderne)
+        theme = 'auto',
+        -- globalstatus = true,
         component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' },
       },
