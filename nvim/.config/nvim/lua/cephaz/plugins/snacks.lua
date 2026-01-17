@@ -7,7 +7,6 @@ return {
       explorer = {
         enabled = true,
         replace_netrw = true,
-
         git_status_symbols = {
           added = '+',
           modified = '~',
@@ -40,52 +39,48 @@ return {
       {
         '<leader>e',
         function()
-          Snacks.explorer()
+          require('snacks').explorer()
         end,
-        desc = 'Explorateur de fichiers',
-      },
-      {
-        '<leader>d',
-        function()
-          Snacks.dashboard.open()
-        end,
-        desc = 'Dashboard',
+        desc = 'File Explorer',
       },
 
       {
         '<leader>bd',
         function()
-          Snacks.bufdelete()
+          require('snacks').bufdelete()
         end,
-        desc = 'Fermer buffer',
+        desc = 'Delete Buffer',
       },
       {
         '<leader>bo',
         function()
-          Snacks.bufdelete.other()
+          require('snacks').bufdelete.other()
         end,
-        desc = 'Fermer les autres buffers',
+        desc = 'Delete Other Buffers',
       },
 
       {
         '<leader>gg',
         function()
-          Snacks.lazygit()
+          require('snacks').lazygit()
         end,
         desc = 'Lazygit',
       },
       {
         '<leader>go',
         function()
-          Snacks.gitbrowse()
+          require('snacks').gitbrowse()
         end,
-        desc = 'Ouvrir sur GitHub',
+        desc = 'Open on GitHub',
       },
 
       {
         '<c-/>',
         function()
-          Snacks.terminal()
+          -- require('snacks').terminal()
+          require('snacks').terminal.toggle(nil, {
+            win = { position = 'float', border = 'rounded' },
+          })
         end,
         desc = 'Toggle Terminal',
         mode = { 'n', 't' },
@@ -94,23 +89,23 @@ return {
       {
         '<leader>ff',
         function()
-          Snacks.picker.files()
+          require('snacks').picker.files()
         end,
-        desc = 'Chercher Fichiers',
+        desc = 'Find Files',
       },
       {
         '<leader>fg',
         function()
-          Snacks.picker.grep()
+          require('snacks').picker.grep()
         end,
-        desc = 'Chercher Texte (Grep)',
+        desc = 'Grep Text',
       },
       {
         '<leader>bb',
         function()
-          Snacks.picker.buffers()
+          require('snacks').picker.buffers()
         end,
-        desc = 'Liste des Buffers',
+        desc = 'Find Buffers',
       },
     },
   },

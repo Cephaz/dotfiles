@@ -3,12 +3,11 @@ return {
     'williamboman/mason-lspconfig.nvim',
     opts = {
       ensure_installed = {
-        'ts_ls',
-        'html',
-        'cssls',
         'lua_ls',
         'pyright',
-        'eslint',
+        'vtsls',
+        'vue_ls',
+        'jsonls',
       },
     },
     dependencies = {
@@ -28,14 +27,15 @@ return {
     },
   },
   {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'whoissethdaniel/mason-tool-installer.nvim',
     opts = {
       ensure_installed = {
-        'prettier', -- prettier formatter
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'black', -- python formatter
-        'pylint',
+        'stylua', -- Lua formatter
+        'luacheck', -- Lua linter
+        'eslint_d', -- ESLint daemon pour JS/TS/Vue
+        'prettier', -- Prettier pour le formatage
+        'jq',
+        'tflint', -- Terraform linter
       },
     },
     dependencies = {
