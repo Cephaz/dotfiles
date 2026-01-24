@@ -1,45 +1,40 @@
 return {
-  {
+  'williamboman/mason.nvim',
+  lazy = false,
+  dependencies = {
     'williamboman/mason-lspconfig.nvim',
-    opts = {
-      ensure_installed = {
-        'lua_ls',
-        'pyright',
-        'vtsls',
-        'vue_ls',
-        'jsonls',
-      },
-    },
-    dependencies = {
-      {
-        'williamboman/mason.nvim',
-        opts = {
-          ui = {
-            icons = {
-              package_installed = '✓',
-              package_pending = '➜',
-              package_uninstalled = '✗',
-            },
-          },
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+  },
+  config = function()
+    local mason = require 'mason'
+    local mason_lspconfig = require 'mason-lspconfig'
+    local mason_tool_installer = require 'mason-tool-installer'
+
+    mason.setup {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
         },
       },
-      'neovim/nvim-lspconfig',
-    },
-  },
-  {
-    'whoissethdaniel/mason-tool-installer.nvim',
-    opts = {
+    }
+
+    mason_lspconfig.setup {
       ensure_installed = {
-        'stylua', -- Lua formatter
-        'luacheck', -- Lua linter
-        'eslint_d', -- ESLint daemon pour JS/TS/Vue
-        'prettier', -- Prettier pour le formatage
-        'jq',
-        'tflint', -- Terraform linter
+        'lua_ls',
+        'vtsls',
+        'vue_ls',
       },
-    },
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
-  },
+      automatic_installation = true,
+    }
+
+    mason_tool_installer.setup {
+      ensure_installed = {
+        'stylua',
+        'prettier',
+        'eslint_d',
+      },
+    }
+  end,
 }

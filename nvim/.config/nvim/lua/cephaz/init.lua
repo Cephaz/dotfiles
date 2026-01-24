@@ -1,4 +1,2 @@
-require 'cephaz.options'
-require 'cephaz.keymaps'
+require 'cephaz.core'
 require 'cephaz.lazy'
-require 'cephaz.lsp'
