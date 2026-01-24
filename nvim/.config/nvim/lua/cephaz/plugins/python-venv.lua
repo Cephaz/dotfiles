@@ -1,0 +1,23 @@
+return {}
+--
+-- return {
+--   'linux-cultist/venv-selector.nvim',
+--   branch = 'main',
+--   dependencies = {
+--     'neovim/nvim-lspconfig',
+--     { 'folke/snacks.nvim', optional = true },
+--   },
+--   ft = 'python',
+--
+--   opts = {
+--     settings = {
+--       options = {
+--         notify_user_on_venv_activation = true,
+--       },
+--     },
+--   },
+--
+--   keys = {
+--     { '<leader>vs', '<cmd>VenvSelect<cr>', desc = 'Select VirtualEnv' },
+--   },
+-- }
