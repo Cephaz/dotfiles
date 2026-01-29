@@ -20,6 +20,8 @@ return {
 
     -- Multi-language indentation support
 
+    bufdelete = { enabled = true },
+
     indent = {
       enabled = true,
       animate = { enabled = vim.fn.has('nvim-0.10') == 1 },
