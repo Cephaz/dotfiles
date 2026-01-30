@@ -23,3 +23,18 @@ keymap('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
 keymap('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window' })
 keymap('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window' })
 keymap('n', '<C-l>', '<C-w>l', { desc = 'Go to right window' })
+
+-- Indent
+keymap('n', '<leader>i2', function()
+  vim.bo.shiftwidth = 2
+  vim.bo.tabstop = 2
+  vim.bo.expandtab = true
+  print 'Indentation: 2 espaces'
+end, { desc = 'Set indentation to 2 spaces' })
+
+keymap('n', '<leader>i4', function()
+  vim.bo.shiftwidth = 4
+  vim.bo.tabstop = 4
+  vim.bo.expandtab = true
+  print 'Indentation: 4 espaces'
+end, { desc = 'Set indentation to 4 spaces' })

@@ -9,19 +9,18 @@ return {
       -- python = { 'isort', 'black' },
       --
       -- javascript = { 'eslint_d', 'prettier' },
-      -- typescript = { 'eslint_d', 'prettier' },
+      typescript = { 'eslint_d', 'prettier' },
       -- javascriptreact = { 'eslint_d', 'prettier' },
       -- typescriptreact = { 'eslint_d', 'prettier' },
       vue = { 'eslint_d', 'prettier' },
-      --
-      --
-      -- css = { 'prettier' },
-      -- scss = { 'prettier' },
-      -- html = { 'prettier' },
+
+      css = { 'prettier' },
+      scss = { 'prettier' },
+      html = { 'prettier' },
       -- terraform = { 'terraform_fmt' },
       -- json = { 'jq' },
       -- yaml = { 'prettier' },
-      -- markdown = { 'prettier' },
+      markdown = { 'prettier' },
     },
 
     format_on_save = {

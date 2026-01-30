@@ -15,39 +15,22 @@ return {
       dashboard = {
         enabled = true,
         sections = {
-          { section = 'header' },
-          { section = 'keys', gap = 1, padding = 1 },
           {
-            pane = 2,
-            icon = ' ',
-            title = 'Recent Files',
-            section = 'recent_files',
-            indent = 2,
-            padding = 1,
-          },
-          {
-            pane = 2,
-            icon = ' ',
-            title = 'Projects',
             section = 'projects',
-            indent = 2,
+            icon = ' ',
+            title = 'Projets Récents',
             padding = 1,
+            limit = 5,
           },
+
           {
-            pane = 2,
-            icon = ' ',
-            title = 'Git Status',
-            section = 'terminal',
-            enabled = function()
-              return require('snacks').git.get_root() ~= nil
-            end,
-            cmd = 'git status --short --branch --renames',
-            height = 5,
+            section = 'recent_files',
+            icon = ' ',
+            title = 'Fichiers Récents',
             padding = 1,
-            ttl = 5 * 60,
-            indent = 3,
+            indent = 2,
+            limit = 5,
           },
-          { section = 'startup' },
         },
       },
       notifier = { enabled = true },
