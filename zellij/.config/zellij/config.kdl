@@ -22,6 +22,8 @@ keybinds clear-defaults=true {
         // --- PANELS ---
         bind "Alt n" { NewPane "Right"; }   
         bind "Alt v" { NewPane "Down"; }   
+        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt e" { TogglePaneEmbedOrFloating; }
         bind "Alt w" { CloseFocus; }        
 
         // --- NAVIGATION ---
