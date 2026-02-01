@@ -14,6 +14,7 @@ return {
       capabilities = capabilities,
     })
 
+    vim.lsp.enable 'rust_analyzer'
     vim.lsp.enable 'lua_ls'
 
     -- Configuration pour TypeScript/JavaScript

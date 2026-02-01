@@ -25,6 +25,7 @@ return {
         'lua_ls',
         'vtsls',
         'vue_ls',
+        'rust_analyzer',
       },
       automatic_installation = true,
     }
@@ -34,6 +35,7 @@ return {
         'stylua',
         'prettier',
         'eslint_d',
+        'rustfmt',
       },
     }
   end,
