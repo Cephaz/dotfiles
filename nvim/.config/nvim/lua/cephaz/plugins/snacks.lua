@@ -21,6 +21,25 @@ return {
             title = 'Projets Récents',
             padding = 1,
             limit = 5,
+            action = function(dir)
+              vim.api.nvim_set_current_dir(dir)
+              require('persistence').load { last = false }
+              vim.schedule(function()
+                local buffers = vim.api.nvim_list_bufs()
+                for _, bufnr in ipairs(buffers) do
+                  if
+                    vim.api.nvim_buf_get_name(bufnr) == ''
+                    and vim.api.nvim_get_option_value(
+                        'buftype',
+                        { buf = bufnr }
+                      )
+                      == ''
+                  then
+                    vim.api.nvim_buf_delete(bufnr, { force = true })
+                  end
+                end
+              end)
+            end,
           },
 
           {
