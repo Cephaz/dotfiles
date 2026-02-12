@@ -7,9 +7,9 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       rust = { 'rustfmt' },
-      -- python = { 'isort', 'black' },
+      python = { 'isort', 'black' },
       --
-      -- javascript = { 'eslint_d', 'prettier' },
+      javascript = { 'eslint_d', 'prettier' },
       typescript = { 'eslint_d', 'prettier' },
       -- javascriptreact = { 'eslint_d', 'prettier' },
       -- typescriptreact = { 'eslint_d', 'prettier' },

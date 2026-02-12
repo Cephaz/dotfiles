@@ -26,6 +26,7 @@ return {
         'vtsls',
         'vue_ls',
         'rust_analyzer',
+        'pyright',
       },
       automatic_installation = true,
     }
@@ -35,6 +36,8 @@ return {
         'stylua',
         'prettier',
         'eslint_d',
+        'isort',
+        'black',
         'rustfmt',
       },
     }

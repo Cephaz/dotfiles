@@ -16,6 +16,7 @@ return {
 
     vim.lsp.enable 'rust_analyzer'
     vim.lsp.enable 'lua_ls'
+    vim.lsp.enable 'pyright'
 
     -- Configuration pour TypeScript/JavaScript
     local vue_language_server_path = vim.fn.stdpath 'data'
