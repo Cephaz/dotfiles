@@ -38,7 +38,6 @@ return {
         'eslint_d',
         'isort',
         'black',
-        'rustfmt',
       },
     }
   end,
