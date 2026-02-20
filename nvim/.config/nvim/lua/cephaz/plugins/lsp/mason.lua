@@ -36,6 +36,7 @@ return {
         'stylua',
         'prettier',
         'eslint_d',
+        'flake8',
         'isort',
         'black',
       },
