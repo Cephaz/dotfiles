@@ -27,3 +27,9 @@ copy-on-select = true
 cursor-style = block
 cursor-style-blink = false
 
+macos-non-native-fullscreen = true
+
+# ctrl (alias: control)
+# alt (alias: opt, option)
+# super (alias: cmd, command)
+# ghostty +list-keybinds --default
