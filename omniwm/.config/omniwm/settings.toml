@@ -1,7 +1,9 @@
 monitorBarOverrides = []
 monitorDwindleOverrides = []
+monitorGapOverrides = []
 monitorNiriOverrides = []
 monitorOrientationOverrides = []
+monitorRoutingOverrides = []
 
 [appearance]
 mode = "automatic"
@@ -25,14 +27,16 @@ maxTotalBytes = 67108864
 [dwindle]
 defaultSplitRatio = 1.0
 moveToRootStable = true
-singleWindowAspectRatio = "4:3"
+singleWindowAspectRatio = "1440x1080"
 smartSplit = false
 splitWidthMultiplier = 1.0
 useGlobalGaps = true
 
 [focus]
+crossesMonitorAtEdge = false
 followsMouse = false
 followsWindowToMonitor = true
+moveCrossesMonitorAtEdge = false
 moveMouseToFocusedWindow = true
 
 [gaps]
@@ -48,11 +52,12 @@ top = 0.0
 animationsEnabled = false
 defaultLayoutType = "niri"
 hotkeysEnabled = true
-hyperTrigger = "Option"
+hyperKeyHoldThresholdMilliseconds = 150
+hyperTrigger = "Left Option"
 ipcEnabled = false
-leaderKey = "Hyper+Space"
 preventSleepEnabled = false
-sequenceTimeoutMilliseconds = 800
+spacesTrackingEnabled = true
+systemHyperTrigger = "None"
 updateChecksEnabled = true
 
 [gestures]
@@ -62,19 +67,20 @@ mouseResizeModifierKey = "option"
 scrollEnabled = true
 scrollModifierKey = "optionShift"
 scrollSensitivity = 5.0
+trackpadScrollStyle = "snap"
 
 [mouseWarp]
-axis = "horizontal"
+enabled = true
 margin = 1
-monitorOrder = ["Built-in Retina Display", "BenQ GW2490E"]
 
 [niri]
 alwaysCenterSingleColumn = false
 centerFocusedColumn = "never"
 columnWidthPresets = [0.3333333333333333, 0.5, 0.6666666666666666]
+defaultColumnWidth = 0.5
 infiniteLoop = true
 maxVisibleColumns = 1
-singleWindowAspectRatio = "none"
+singleWindowAspectRatio = "fill"
 
 [quakeTerminal]
 animationDuration = 0.2
@@ -85,6 +91,9 @@ monitorMode = "focusedWindow"
 opacity = 0.9500000000000001
 position = "center"
 widthPercent = 50.0
+
+[routing]
+mode = "macOS"
 
 [statusBar]
 showAppNames = false
@@ -106,18 +115,6 @@ showLabels = true
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
-
-[workspaceBar.accentColor]
-alpha = 1.0
-blue = -1.0
-green = -1.0
-red = -1.0
-
-[workspaceBar.textColor]
-alpha = 1.0
-blue = -1.0
-green = -1.0
-red = -1.0
 
 [[appRules]]
 bundleId = "com.openai.codex"
@@ -198,75 +195,75 @@ minHeight = 320.0
 minWidth = 660.0
 
 [[hotkeys]]
-binding = "Hyper+1"
+binding = "Option+1"
 id = "switchWorkspace.0"
 
 [[hotkeys]]
-binding = "Hyper+Shift+1"
+binding = "Option+Shift+1"
 id = "moveToWorkspace.0"
 
 [[hotkeys]]
-binding = "Hyper+2"
+binding = "Option+2"
 id = "switchWorkspace.1"
 
 [[hotkeys]]
-binding = "Hyper+Shift+2"
+binding = "Option+Shift+2"
 id = "moveToWorkspace.1"
 
 [[hotkeys]]
-binding = "Hyper+3"
+binding = "Option+3"
 id = "switchWorkspace.2"
 
 [[hotkeys]]
-binding = "Hyper+Shift+3"
+binding = "Option+Shift+3"
 id = "moveToWorkspace.2"
 
 [[hotkeys]]
-binding = "Hyper+4"
+binding = "Option+4"
 id = "switchWorkspace.3"
 
 [[hotkeys]]
-binding = "Hyper+Shift+4"
+binding = "Option+Shift+4"
 id = "moveToWorkspace.3"
 
 [[hotkeys]]
-binding = "Hyper+5"
+binding = "Option+5"
 id = "switchWorkspace.4"
 
 [[hotkeys]]
-binding = "Hyper+Shift+5"
+binding = "Option+Shift+5"
 id = "moveToWorkspace.4"
 
 [[hotkeys]]
-binding = "Hyper+6"
+binding = "Option+6"
 id = "switchWorkspace.5"
 
 [[hotkeys]]
-binding = "Hyper+Shift+6"
+binding = "Option+Shift+6"
 id = "moveToWorkspace.5"
 
 [[hotkeys]]
-binding = "Hyper+7"
+binding = "Option+7"
 id = "switchWorkspace.6"
 
 [[hotkeys]]
-binding = "Hyper+Shift+7"
+binding = "Option+Shift+7"
 id = "moveToWorkspace.6"
 
 [[hotkeys]]
-binding = "Hyper+8"
+binding = "Option+8"
 id = "switchWorkspace.7"
 
 [[hotkeys]]
-binding = "Hyper+Shift+8"
+binding = "Option+Shift+8"
 id = "moveToWorkspace.7"
 
 [[hotkeys]]
-binding = "Hyper+9"
+binding = "Option+9"
 id = "switchWorkspace.8"
 
 [[hotkeys]]
-binding = "Hyper+Shift+9"
+binding = "Option+Shift+9"
 id = "moveToWorkspace.8"
 
 [[hotkeys]]
@@ -490,39 +487,39 @@ binding = "Option+End"
 id = "focusColumnLast"
 
 [[hotkeys]]
-binding = "Control+Option+1"
+binding = "Hyper+1"
 id = "focusColumn.0"
 
 [[hotkeys]]
-binding = "Control+Option+2"
+binding = "Hyper+2"
 id = "focusColumn.1"
 
 [[hotkeys]]
-binding = "Control+Option+3"
+binding = "Hyper+3"
 id = "focusColumn.2"
 
 [[hotkeys]]
-binding = "Control+Option+4"
+binding = "Hyper+4"
 id = "focusColumn.3"
 
 [[hotkeys]]
-binding = "Control+Option+5"
+binding = "Hyper+5"
 id = "focusColumn.4"
 
 [[hotkeys]]
-binding = "Control+Option+6"
+binding = "Hyper+6"
 id = "focusColumn.5"
 
 [[hotkeys]]
-binding = "Control+Option+7"
+binding = "Hyper+7"
 id = "focusColumn.6"
 
 [[hotkeys]]
-binding = "Control+Option+8"
+binding = "Hyper+8"
 id = "focusColumn.7"
 
 [[hotkeys]]
-binding = "Control+Option+9"
+binding = "Hyper+9"
 id = "focusColumn.8"
 
 [[hotkeys]]
@@ -598,11 +595,11 @@ binding = "Unassigned"
 id = "moveColumnToIndex.9"
 
 [[hotkeys]]
-binding = "Option+Period"
+binding = "Hyper+Period"
 id = "cycleColumnWidthForward"
 
 [[hotkeys]]
-binding = "Option+Comma"
+binding = "Hyper+Comma"
 id = "cycleColumnWidthBackward"
 
 [[hotkeys]]
@@ -626,19 +623,19 @@ binding = "Option+Shift+F"
 id = "toggleColumnFullWidth"
 
 [[hotkeys]]
-binding = "Control+Option+F"
+binding = "Hyper+F"
 id = "expandColumnToAvailableWidth"
 
 [[hotkeys]]
-binding = "Control+Option+R"
+binding = "Hyper+R"
 id = "resetWindowHeight"
 
 [[hotkeys]]
-binding = "Option+Minus"
+binding = "Hyper+Minus"
 id = "setColumnWidth.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Equal"
+binding = "Hyper+Equal"
 id = "setColumnWidth.increase10Percent"
 
 [[hotkeys]]
@@ -650,11 +647,11 @@ binding = "Unassigned"
 id = "setWindowWidth.increase10Percent"
 
 [[hotkeys]]
-binding = "Option+Shift+Minus"
+binding = "Hyper+Minus"
 id = "setWindowHeight.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Shift+Equal"
+binding = "Hyper+Equal"
 id = "setWindowHeight.increase10Percent"
 
 [[hotkeys]]
