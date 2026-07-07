@@ -36,6 +36,7 @@ useGlobalGaps = true
 crossesMonitorAtEdge = false
 followsMouse = false
 followsWindowToMonitor = true
+lockModifier = "off"
 moveCrossesMonitorAtEdge = false
 moveMouseToFocusedWindow = true
 
@@ -52,8 +53,6 @@ top = 0.0
 animationsEnabled = false
 defaultLayoutType = "niri"
 hotkeysEnabled = true
-hyperKeyHoldThresholdMilliseconds = 150
-hyperTrigger = "Left Option"
 ipcEnabled = false
 preventSleepEnabled = false
 spacesTrackingEnabled = true
@@ -107,11 +106,13 @@ enabled = true
 height = 24.0
 hideEmptyWorkspaces = true
 labelFontSize = 12.0
-notchAware = true
+notchActiveZoneWidth = 180.0
+notchMode = "moveBelowMenuBar"
 position = "overlappingMenuBar"
 reserveLayoutSpace = false
 showFloatingWindows = false
 showLabels = true
+systemStatsButton = false
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
@@ -193,6 +194,13 @@ bundleId = "com.apple.MobileSMS"
 id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
+
+[[appRules]]
+bundleId = "com.apple.Notes"
+id = "427BFD77-3A16-49D5-9172-BF896DB05156"
+layout = "float"
+minHeight = 1050.0
+minWidth = 960.0
 
 [[hotkeys]]
 binding = "Option+1"
@@ -639,19 +647,19 @@ binding = "Hyper+Equal"
 id = "setColumnWidth.increase10Percent"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+Left Arrow"
 id = "setWindowWidth.decrease10Percent"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+Right Arrow"
 id = "setWindowWidth.increase10Percent"
 
 [[hotkeys]]
-binding = "Hyper+Minus"
+binding = "Hyper+Down Arrow"
 id = "setWindowHeight.decrease10Percent"
 
 [[hotkeys]]
-binding = "Hyper+Equal"
+binding = "Hyper+Up Arrow"
 id = "setWindowHeight.increase10Percent"
 
 [[hotkeys]]
