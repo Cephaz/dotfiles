@@ -100,22 +100,24 @@ showWorkspaceName = false
 useWorkspaceId = false
 
 [workspaceBar]
-backgroundOpacity = 0.1
+backgroundOpacity = 0.0
 deduplicateAppIcons = false
 enabled = true
-height = 24.0
+height = 20.0
 hideEmptyWorkspaces = true
 labelFontSize = 12.0
-notchActiveZoneWidth = 180.0
-notchMode = "moveBelowMenuBar"
+notchActiveZoneWidth = 100.0
+notchMode = "splitActiveLeft"
 position = "overlappingMenuBar"
 reserveLayoutSpace = false
+revealHoldMilliseconds = 200.0
+revealModifier = "off"
 showFloatingWindows = false
-showLabels = true
+showLabels = false
 systemStatsButton = false
-windowLevel = "popup"
+windowLevel = "normal"
 xOffset = 0.0
-yOffset = 0.0
+yOffset = -0.0
 
 [[appRules]]
 bundleId = "com.openai.codex"
@@ -712,6 +714,14 @@ id = "resizeShrink.down"
 
 [[hotkeys]]
 binding = "Unassigned"
+id = "resizeFocusedWindow.grow"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "resizeFocusedWindow.shrink"
+
+[[hotkeys]]
+binding = "Unassigned"
 id = "preselect.left"
 
 [[hotkeys]]
@@ -777,6 +787,10 @@ id = "toggleWorkspaceLayout"
 [[hotkeys]]
 binding = "Option+Shift+O"
 id = "toggleOverview"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleSystemStats"
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
