@@ -4,7 +4,11 @@ local theme_cycle = {
   'kanagawa',
   'solarized-osaka',
   'tokyonight',
+  'monokai',
   'monokai-pro',
+  'monokai_pro',
+  'monokai_soda',
+  'monokai_ristretto',
   'catppuccin',
 }
 
@@ -342,6 +346,9 @@ return {
         transparent_background = true,
       }
     end,
+  },
+  {
+    'tanvirtin/monokai.nvim',
   },
   {
     'catppuccin/nvim',
