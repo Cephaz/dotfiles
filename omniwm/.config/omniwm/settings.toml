@@ -33,11 +33,11 @@ splitWidthMultiplier = 1.0
 useGlobalGaps = true
 
 [focus]
-crossesMonitorAtEdge = false
+crossesMonitorAtEdge = true
 followsMouse = false
-followsWindowToMonitor = false
+followsWindowToMonitor = true
 lockModifier = "off"
-moveCrossesMonitorAtEdge = false
+moveCrossesMonitorAtEdge = true
 moveMouseToFocusedWindow = false
 raiseOnMouseFocus = false
 
@@ -56,8 +56,8 @@ animationsEnabled = true
 defaultLayoutType = "niri"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
-ipcEnabled = false
-preventSleepEnabled = false
+ipcEnabled = true
+preventSleepEnabled = true
 systemHyperTrigger = "None"
 updateChecksEnabled = true
 
@@ -1022,7 +1022,7 @@ layoutType = "niri"
 name = "3"
 
 [workspaces.monitorAssignment]
-type = "main"
+type = "secondary"
 
 [[workspaces]]
 id = "248AA883-2261-4D45-943C-79C0E46A232B"
@@ -1030,4 +1030,4 @@ layoutType = "niri"
 name = "4"
 
 [workspaces.monitorAssignment]
-type = "main"
+type = "secondary"
