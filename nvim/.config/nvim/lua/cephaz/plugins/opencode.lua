@@ -23,7 +23,12 @@ return {
       require('opencode').select()
     end, { desc = 'Execute opencode action…' })
     vim.keymap.set({ 'n', 't' }, '<C-.>', function()
-      require('opencode').toggle()
+      require('snacks').terminal.toggle('opencode', {
+        win = {
+          position = 'right',
+          enter = false,
+        },
+      })
     end, { desc = 'Toggle opencode' })
 
     vim.keymap.set({ 'n', 'x' }, 'go', function()
