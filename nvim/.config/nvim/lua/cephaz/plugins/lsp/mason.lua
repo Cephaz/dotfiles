@@ -39,6 +39,7 @@ return {
         'flake8',
         'isort',
         'black',
+        'debugpy',
       },
     }
   end,
