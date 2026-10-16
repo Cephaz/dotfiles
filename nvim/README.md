@@ -25,8 +25,9 @@ configuré, exécuter `rustup default stable`. Les outils npm globaux sont propr
 Ne pas installer `tree-sitter-cli` via npm ; utiliser la formule Homebrew.
 
 Ouvrir Neovim, lancer `:Lazy sync`, puis `:checkhealth cephaz` et `:checkhealth vim.lsp`.
-Treesitter installe les parseurs manquants en arrière-plan si ses prérequis sont
-présents. Attendre la fin puis rouvrir le fichier ; `:TSUpdate` les met à jour.
+Les parseurs Treesitter ne sont pas installés automatiquement ; lancer
+`:TSInstall javascript typescript` (ou les autres parseurs souhaités) une fois.
+`:TSUpdate` les met à jour.
 Les serveurs absents du PATH ne sont pas activés : les installer puis relancer
 Neovim. Les anciens exécutables Mason ne sont pas supprimés de la machine.
 
