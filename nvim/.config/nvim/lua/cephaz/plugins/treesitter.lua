@@ -1,7 +1,9 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    event = { 'BufReadPre', 'BufNewFile' },
+    -- Keep the legacy setup API; main uses a different configuration.
+    branch = 'master',
+    lazy = false,
     build = ':TSUpdate',
     config = function()
       local treesitter = require 'nvim-treesitter.configs'
