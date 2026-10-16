@@ -34,7 +34,18 @@ return {
       if
         vim.fn.executable 'tree-sitter' == 1 and vim.fn.executable 'cc' == 1
       then
-        treesitter.install(parsers)
+        if type(treesitter.install) == 'function' then
+          treesitter.install(parsers)
+        elseif vim.fn.exists ':TSInstall' == 2 then
+          -- Older checkouts of nvim-treesitter main expose installation only
+          -- through the command, not the Lua API.
+          vim.cmd('TSInstall ' .. table.concat(parsers, ' '))
+        else
+          vim.notify(
+            'nvim-treesitter has no parser install API; run :Lazy sync and :TSUpdate',
+            vim.log.levels.WARN
+          )
+        end
       end
 
       vim.api.nvim_create_autocmd({ 'FileType', 'BufWinEnter' }, {
