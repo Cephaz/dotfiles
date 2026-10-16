@@ -1,7 +1,10 @@
 # Install order
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install --cask font-jetbrains-mono-nerd-font
-brew install wezterm tmux neovim lazygit opencode fzf gh pyenv pipx openssl@3 nvm
+brew install wezterm tmux neovim lazygit opencode fzf gh wget fd ast-grep imagemagick rustup go 
+
+brew install pyenv pipx openssl@3
+brew install nvm
 
 brew install --cask docker
 
