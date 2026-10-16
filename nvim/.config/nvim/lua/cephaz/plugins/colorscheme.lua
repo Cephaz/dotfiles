@@ -4,11 +4,7 @@ local theme_cycle = {
   'kanagawa',
   'solarized-osaka',
   'tokyonight',
-  'monokai',
   'monokai-pro',
-  'monokai_pro',
-  'monokai_soda',
-  'monokai_ristretto',
   'catppuccin',
 }
 
@@ -203,7 +199,6 @@ return {
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptBorder = { fg = theme.ui.special },
             TelescopeResultsNormal = { fg = theme.ui.fg_dim },
@@ -348,9 +343,6 @@ return {
     end,
   },
   {
-    'tanvirtin/monokai.nvim',
-  },
-  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -404,7 +396,6 @@ return {
           },
           lsp_trouble = true,
           lsp_saga = true,
-          cmp = true,
           telescope = true,
           which_key = true,
           gitsigns = true,

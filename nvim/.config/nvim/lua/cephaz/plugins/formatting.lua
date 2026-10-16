@@ -11,8 +11,8 @@ return {
       --
       javascript = { 'eslint_d', 'prettier' },
       typescript = { 'eslint_d', 'prettier' },
-      -- javascriptreact = { 'eslint_d', 'prettier' },
-      -- typescriptreact = { 'eslint_d', 'prettier' },
+      javascriptreact = { 'eslint_d', 'prettier' },
+      typescriptreact = { 'eslint_d', 'prettier' },
       vue = { 'eslint_d', 'prettier' },
 
       css = { 'prettier' },
@@ -25,8 +25,7 @@ return {
     },
 
     format_on_save = {
-      lsp_fallback = true,
-      async = false,
+      lsp_format = 'fallback',
       timeout_ms = 3000,
     },
   },
@@ -35,7 +34,7 @@ return {
     {
       '<leader>mp',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format { async = true, lsp_format = 'fallback' }
       end,
       mode = { 'n', 'v' },
       desc = 'Format file or range',

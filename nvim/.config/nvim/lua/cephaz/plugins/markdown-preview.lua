@@ -1,25 +1,18 @@
 return {
   {
-    'iamcco/markdown-preview.nvim',
+    'ellisonleao/glow.nvim',
     ft = { 'markdown' },
-    cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
-    build = 'cd app && npm install',
-    init = function()
-      vim.g.mkdp_auto_start = 0
-      vim.g.mkdp_auto_close = 1
-      vim.g.mkdp_refresh_slow = 0
-      vim.g.mkdp_theme = 'dark'
-      vim.g.mkdp_filetypes = { 'markdown' }
-      vim.g.mkdp_markdown_css = ''
-      vim.g.mkdp_highlight_css = ''
-      vim.g.mkdp_preview_options = {
-        mermaid = true,
-      }
-    end,
+    cmd = { 'Glow' },
+    opts = {
+      style = 'dark',
+      width = 120,
+      border = 'rounded',
+      pager = false,
+    },
     keys = {
       {
-        '<leader>mp',
-        '<cmd>MarkdownPreviewToggle<cr>',
+        '<leader>pm',
+        '<cmd>Glow<cr>',
         desc = 'Markdown Preview',
       },
     },

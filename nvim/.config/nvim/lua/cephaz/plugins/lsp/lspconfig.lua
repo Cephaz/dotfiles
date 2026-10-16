@@ -2,25 +2,20 @@ return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
     { 'antosha417/nvim-lsp-file-operations', config = true },
     { 'folke/lazydev.nvim', opts = {} },
   },
   config = function()
-    local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    vim.lsp.config('*', {
-      capabilities = capabilities,
-    })
-
-    vim.lsp.enable 'rust_analyzer'
-    vim.lsp.enable 'lua_ls'
-    vim.lsp.enable 'pyright'
-
     -- Configuration pour TypeScript/JavaScript
-    local vue_language_server_path = vim.fn.stdpath 'data'
-      .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+    -- Resolve from the active Node installation (including nvm), not Mason.
+    local vue_language_server_path = vim.env.NVIM_VUE_LANGUAGE_SERVER_PATH
+    if not vue_language_server_path then
+      local executable = vim.fn.exepath 'vue-language-server'
+      local resolved = executable ~= '' and vim.uv.fs_realpath(executable)
+      if resolved then
+        vue_language_server_path = vim.fs.dirname(vim.fs.dirname(resolved))
+      end
+    end
 
     local tsserver_filetypes = {
       'typescript',
@@ -39,9 +34,9 @@ return {
       settings = {
         vtsls = {
           tsserver = {
-            globalPlugins = {
+            globalPlugins = vue_language_server_path and {
               vue_plugin,
-            },
+            } or {},
           },
         },
       },
@@ -63,11 +58,31 @@ return {
 
     vim.lsp.config('vtsls', vtsls_config)
     vim.lsp.config('vue_ls', vue_ls_config)
-    vim.lsp.enable { 'vtsls', 'vue_ls' }
-
+    local group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true })
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      group = group,
       callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client:supports_method 'textDocument/completion' then
+          vim.bo[ev.buf].autocomplete = false
+          local provider = client.server_capabilities.completionProvider
+          local triggers = provider.triggerCharacters or {}
+          for char in
+            ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_'):gmatch '.'
+          do
+            if not vim.tbl_contains(triggers, char) then
+              triggers[#triggers + 1] = char
+            end
+          end
+          provider.triggerCharacters = triggers
+          vim.lsp.completion.enable(
+            true,
+            client.id,
+            ev.buf,
+            { autotrigger = true }
+          )
+        end
+
         local opts = { buffer = ev.buf, silent = true }
         local keymap = vim.keymap.set
 
@@ -94,8 +109,41 @@ return {
         keymap('n', 'K', vim.lsp.buf.hover, opts)
 
         opts.desc = 'Restart LSP'
-        keymap('n', '<leader>rs', ':LspRestart<CR>', opts)
+        keymap('n', '<leader>rs', function()
+          for _, attached in ipairs(vim.lsp.get_clients { bufnr = ev.buf }) do
+            vim.lsp.enable(attached.name, false)
+            vim.lsp.enable(attached.name)
+          end
+        end, opts)
       end,
     })
+
+    vim.api.nvim_create_autocmd('LspDetach', {
+      group = group,
+      callback = function(ev)
+        for _, client in ipairs(vim.lsp.get_clients { bufnr = ev.buf }) do
+          if
+            client.id ~= ev.data.client_id
+            and client:supports_method 'textDocument/completion'
+          then
+            return
+          end
+        end
+        vim.bo[ev.buf].autocomplete = true
+      end,
+    })
+
+    for _, name in ipairs {
+      'lua_ls',
+      'rust_analyzer',
+      'pyright',
+      'vtsls',
+      'vue_ls',
+    } do
+      local config = vim.lsp.config[name]
+      if config and vim.fn.executable(config.cmd[1]) == 1 then
+        vim.lsp.enable(name)
+      end
+    end
   end,
 }
