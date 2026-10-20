@@ -55,6 +55,22 @@ return {
     }
 
     local vue_ls_config = {}
+    -- Vue requires the JavaScript TypeScript API, absent from TypeScript 7.
+    -- Use the same compatible SDK bundled with vtsls for both servers.
+    local vtsls_executable = vim.fn.exepath 'vtsls'
+    local vtsls_resolved = vtsls_executable ~= ''
+      and vim.uv.fs_realpath(vtsls_executable)
+    if vtsls_resolved then
+      local tsdk = vim.fs.joinpath(
+        vim.fs.dirname(vim.fs.dirname(vtsls_resolved)),
+        'node_modules',
+        'typescript',
+        'lib'
+      )
+      if vim.fn.filereadable(vim.fs.joinpath(tsdk, 'typescript.js')) == 1 then
+        vue_ls_config.cmd = { 'vue-language-server', '--stdio', '--tsdk=' .. tsdk }
+      end
+    end
 
     vim.lsp.config('vtsls', vtsls_config)
     vim.lsp.config('vue_ls', vue_ls_config)
