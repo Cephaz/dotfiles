@@ -19,7 +19,7 @@ return {
       scss = { 'prettier' },
       html = { 'prettier' },
       -- terraform = { 'terraform_fmt' },
-      -- json = { 'jq' },
+      json = { 'jq' },
       -- yaml = { 'prettier' },
       markdown = { 'prettier' },
     },
