@@ -9,14 +9,23 @@ brew install nvm
 
 brew install --cask docker
 
+# Install terraform
+
+```sh
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+```
+
 # Install node
 
+```sh
 nvm install 26
 nvm alias default 26
 nvm use 26
 
 npm install -g corepack
 corepack enable
+```
 
 # Install GCP and python
 
