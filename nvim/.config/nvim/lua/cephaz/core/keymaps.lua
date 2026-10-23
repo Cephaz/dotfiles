@@ -17,6 +17,7 @@ keymap(
 keymap('n', '<leader>ws', '<C-w>s', { desc = 'Split horizontal' })
 keymap('n', '<leader>wv', '<C-w>v', { desc = 'Split vertical' })
 keymap('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
+keymap('n', '<leader>uw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
 
 -- Window navigation
 keymap('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
