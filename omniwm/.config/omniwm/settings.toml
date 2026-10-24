@@ -957,18 +957,6 @@ id = "resizeFocusedWindow.grow"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeFocusedWindow.shrink"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeFocusedWindow.grow"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeFocusedWindow.shrink"
-
-[[hotkeys]]
-binding = "Unassigned"
 id = "preselect.left"
 
 [[hotkeys]]
