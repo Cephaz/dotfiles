@@ -11,34 +11,23 @@ return {
       --
       javascript = { 'eslint_d', 'prettier' },
       typescript = { 'eslint_d', 'prettier' },
-      -- javascriptreact = { 'eslint_d', 'prettier' },
-      -- typescriptreact = { 'eslint_d', 'prettier' },
+      javascriptreact = { 'eslint_d', 'prettier' },
+      typescriptreact = { 'eslint_d', 'prettier' },
       vue = { 'eslint_d', 'prettier' },
 
       css = { 'prettier' },
       scss = { 'prettier' },
       html = { 'prettier' },
       -- terraform = { 'terraform_fmt' },
-      -- json = { 'jq' },
+      json = { 'jq' },
       -- yaml = { 'prettier' },
       markdown = { 'prettier' },
     },
 
     format_on_save = {
-      lsp_fallback = true,
-      async = false,
+      lsp_format = 'fallback',
       timeout_ms = 3000,
     },
   },
 
-  keys = {
-    {
-      '<leader>mp',
-      function()
-        require('conform').format { async = true, lsp_fallback = true }
-      end,
-      mode = { 'n', 'v' },
-      desc = 'Format file or range',
-    },
-  },
 }

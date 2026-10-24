@@ -199,7 +199,6 @@ return {
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptBorder = { fg = theme.ui.special },
             TelescopeResultsNormal = { fg = theme.ui.fg_dim },
@@ -397,7 +396,6 @@ return {
           },
           lsp_trouble = true,
           lsp_saga = true,
-          cmp = true,
           telescope = true,
           which_key = true,
           gitsigns = true,

@@ -6,6 +6,6 @@ local general = augroup('General', { clear = true })
 autocmd('TextYankPost', {
   group = general,
   callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
+    vim.hl.on_yank { higroup = 'IncSearch', timeout = 200 }
   end,
 })
