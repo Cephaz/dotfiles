@@ -193,7 +193,7 @@ systemStatsButton = false
 transparentBackground = false
 windowLevel = "popup"
 xOffset = 0.0
-yOffset = 0.0
+yOffset = -0.0
 
 [workspaceBar.iconOverrides]
 
@@ -950,6 +950,14 @@ id = "resizeShrink.horizontal"
 [[hotkeys]]
 binding = "Unassigned"
 id = "resizeShrink.vertical"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "resizeFocusedWindow.grow"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "resizeFocusedWindow.shrink"
 
 [[hotkeys]]
 binding = "Unassigned"
