@@ -1,5 +1,6 @@
 # Install order
 
+```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install --cask font-jetbrains-mono-nerd-font
 brew install wezterm tmux neovim lazygit opencode fzf gh wget fd ast-grep imagemagick rustup go gum
@@ -8,12 +9,17 @@ brew install pyenv pipx openssl@3
 brew install nvm
 
 brew install --cask docker
+```
 
 # Install terraform
 
 ```sh
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
+
+brew install tfenv
+tfenv install
+tfenv use 1.15.6
 ```
 
 # Install node
@@ -29,6 +35,7 @@ corepack enable
 
 # Install GCP and python
 
+```sh
 PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA=openssl@3 \
 pyenv install 3.12.9
 
@@ -39,10 +46,13 @@ poetry config virtualenvs.in-project true
 brew install --cask gcloud-cli
 
 pipx inject poetry keyring keyrings.google-artifactregistry-auth
+```
 
 # Update tmux
 
+```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
 ctrl + b + I
 
