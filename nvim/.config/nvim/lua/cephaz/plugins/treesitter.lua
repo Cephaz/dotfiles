@@ -6,7 +6,9 @@ return {
     build = ':TSUpdate',
     config = function()
       local treesitter = require 'nvim-treesitter'
-      treesitter.setup {}
+      treesitter.setup {
+        install_dir = vim.fn.stdpath('data') .. '/site',
+      }
 
       local parsers = {
         'json',
@@ -29,6 +31,9 @@ return {
         'python',
         'rust',
       }
+
+      -- JSON needs both its parser and highlighting queries in the new layout.
+      treesitter.install { 'json' }
 
       vim.api.nvim_create_autocmd({ 'FileType', 'BufWinEnter' }, {
         group = vim.api.nvim_create_augroup(

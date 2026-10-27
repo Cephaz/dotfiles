@@ -74,6 +74,15 @@ return {
 
     vim.lsp.config('vtsls', vtsls_config)
     vim.lsp.config('vue_ls', vue_ls_config)
+    vim.lsp.config('jsonls', {
+      -- Use the Node executable installed globally, like the other servers.
+      cmd = { 'vscode-json-language-server', '--stdio' },
+      settings = {
+        json = {
+          validate = { enable = true },
+        },
+      },
+    })
     local group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true })
     vim.api.nvim_create_autocmd('LspAttach', {
       group = group,
@@ -151,13 +160,18 @@ return {
 
     for _, name in ipairs {
       'lua_ls',
+      'jsonls',
       'rust_analyzer',
       'pyright',
       'vtsls',
       'vue_ls',
     } do
       local config = vim.lsp.config[name]
-      if config and vim.fn.executable(config.cmd[1]) == 1 then
+      if
+        config
+        and type(config.cmd) == 'table'
+        and vim.fn.executable(config.cmd[1]) == 1
+      then
         vim.lsp.enable(name)
       end
     end
