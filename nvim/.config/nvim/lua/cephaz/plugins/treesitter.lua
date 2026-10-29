@@ -12,6 +12,7 @@ return {
 
       local parsers = {
         'json',
+        'toml',
         'javascript',
         'typescript',
         'tsx',

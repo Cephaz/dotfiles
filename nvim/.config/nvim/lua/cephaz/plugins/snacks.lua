@@ -69,6 +69,11 @@ return {
 
       picker = {
         enabled = true,
+        win = {
+          input = {
+            bo = { autocomplete = false },
+          },
+        },
         icons = {
           git = {
             added = ' ',

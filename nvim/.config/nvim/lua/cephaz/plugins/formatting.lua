@@ -20,7 +20,8 @@ return {
       html = { 'prettier' },
       -- terraform = { 'terraform_fmt' },
       json = { 'jq' },
-      -- yaml = { 'prettier' },
+      toml = { 'taplo' },
+      yaml = { 'prettier' },
       markdown = { 'prettier' },
     },
 
@@ -29,5 +30,4 @@ return {
       timeout_ms = 3000,
     },
   },
-
 }

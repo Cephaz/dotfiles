@@ -18,6 +18,7 @@ function M.check()
     'vue-language-server',
     'pyright-langserver',
     'rust-analyzer',
+    'taplo',
     'stylua',
     'prettier',
     'eslint_d',

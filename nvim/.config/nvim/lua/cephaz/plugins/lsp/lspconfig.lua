@@ -161,6 +161,7 @@ return {
     for _, name in ipairs {
       'lua_ls',
       'jsonls',
+      'taplo',
       'rust_analyzer',
       'pyright',
       'vtsls',

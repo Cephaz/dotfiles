@@ -8,7 +8,7 @@ Depuis un terminal avec la version Node souhaitée active (`nvm use default`) :
 
 ```sh
 xcode-select --install # uniquement si les Command Line Tools sont absents
-brew install neovim lua-language-server stylua tree-sitter-cli glow ripgrep fd pipx rustup
+brew install neovim lua-language-server stylua taplo tree-sitter-cli glow ripgrep fd pipx rustup
 npm install -g @vtsls/language-server @vue/language-server @vue/typescript-plugin typescript pyright prettier eslint_d
 pipx install black
 pipx install isort
@@ -28,6 +28,8 @@ Ouvrir Neovim, lancer `:Lazy sync`, puis `:checkhealth cephaz` et `:checkhealth 
 Les parseurs Treesitter ne sont pas installés automatiquement ; lancer
 `:TSInstall javascript typescript` (ou les autres parseurs souhaités) une fois.
 `:TSUpdate` les met à jour.
+Pour TOML, lancer `:TSInstall toml` : Taplo fournit les diagnostics LSP et le
+formatage à la sauvegarde, sans linter supplémentaire.
 Les serveurs absents du PATH ne sont pas activés : les installer puis relancer
 Neovim. Les anciens exécutables Mason ne sont pas supprimés de la machine.
 
