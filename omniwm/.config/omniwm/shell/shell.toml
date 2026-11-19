@@ -1,0 +1,12 @@
+
+[profiles]
+
+[profiles.default]
+
+[profiles.default.workspaceBar]
+fullWidth = true
+height = 20.0
+hideInNativeFullscreen = false
+hoverPreviewsEnabled = false
+position = "belowMenuBar"
+reserveLayoutSpace = true
